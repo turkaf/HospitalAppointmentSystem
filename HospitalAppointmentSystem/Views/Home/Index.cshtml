@@ -1,8 +1,86 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-1 py-5 text-light" style="max-width: 1500px;">
+    <!-- content - start -->
+    <div class="row mt-4 border-bottom">
+        <div class="col-7 my-5 d-flex align-items-center">
+            <div>
+                <h1 class="mb-3" style="font-family: 'Open Sans', sans-serif;
+                    font-family: 'Roboto', sans-serif;">
+                    Dogus Hospital: Your Health is Our Priority!
+                </h1>
+                <p style="font-size: 18px;">
+                    Dogus Hospital is a leading healthcare institution that aims to provide the highest quality care to every individual
+                    by combining excellence and trust in healthcare services. It constantly improves itself to provide the best service to its patients with its innovative
+                    treatment methods, expert staff and modern infrastructure.
+                </p>
+                <p class="mb-3" style="font-size: 18px;">
+                    With its patient-centered approach, Dogus Hospital offers the best solution for health and well-being at every step.
+                    Our aim is to provide a safe, effective and human-value treatment process for a healthy life.
+                </p>
+                <div class="pt-3">
+                    <button type="button" class="btn btn-outline-light btn-lg rounded-pill"
+                            style="width: 200px;">
+                        Contact Us
+                    </button>
+                    <button type="button" class="btn btn-light ml-5 btn-lg rounded-pill"
+                            style="width: 200px;">
+                        Appointment
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-5 d-flex align-items-center my-5">
+            <img class="w-100" src="~/UIFrontend/images/hospital.jpg" alt="content-image">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mt-5 d-flex justify-content-center align-items-center">
+            <h2>Our Services</h2>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-4 bg-light-blue pt-5 px-4">
+            <!-- <span> -->
+            <h3>General Health Services</h3>
+            <p class="mt-4">
+                Dogus Hospital offers a wide range of services to protect and improve your health. We emphasize the importance of
+                early diagnosis with appropriate health screenings, routine check-ups and general examinations for every age group. We not only
+                treat your health, but also guide you with individual plans and suggestions that support a healthy life. The comprehensive health
+                services we provide in the fields of cardiology, internal medicine, gynecology and many more aim to increase the quality of life of
+                our patients.
+            </p>
+            <!-- </span> -->
+        </div>
+        <div class="col-4 text-dark py-5 px-4" style="background-color: #ebf0f4;">
+            <span>
+                <h3>Special Treatment Methods</h3>
+                <p class="mt-4">We offer our patients a healthy life with modern medical practices and personalized treatment methods.</p>
+                <br>
+                <h5>Personalized Treatment Plans</h5>
+                <p>
+                    As Dogus Hospital, we offer personalized treatment plans by considering the individual needs of each of our patients.
+                    With modern medical technologies and our experienced expert staff, we determine the most appropriate treatment methods
+                    for our patients and closely follow the treatment process at every stage.
+                </p>
+            </span>
+        </div>
+        <div class="col-4 bg-light-blue pt-5 px-4" style="font-family: 'Montserrat', sans-serif;
+            font-family: 'Open Sans', sans-serif;">
+            <span>
+                <h3>Emergency Services</h3>
+                <p class="mt-4">We are always with you in emergencies. We provide 24/7 emergency response and health support.</p>
+                <br>
+                <p>
+                    Dogus Hospital offers a well-equipped and experienced emergency service that provides 24/7 service for emergencies.
+                    It is equipped with the latest technology equipment to provide immediate response to all kinds of urgent health problems.
+                    Our professional emergency medicine specialists and support team provide life-saving services with fast and accurate interventions.
+                </p>
+            </span>
+        </div>
+    </div>
 </div>

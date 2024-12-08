@@ -1,0 +1,35 @@
+﻿@using EntityLayer.Concrete
+@model List<Clinic>
+
+@{
+    ViewData["Title"] = "Clinics";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+
+<div class="container mt-5 text-light" style="max-width: 1500px;">
+    <!-- content - start -->
+    <div class="row mt-4">
+        <div class="col my-5 d-flex flex-column justify-content-center align-items-center border-bottom">
+            <h1 class="mt-4 text-center">Our Clinics</h1>
+            <p class="text-center mb-5">Expert Hands for Your Health, a Safe Future!</p>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach(var item in Model)
+        {
+            <div class="col-6 mb-5">
+                <div class="card d-flex flex-column h-100">
+                    <img src="@item.Photo" class="card-img-top" alt="@item.Name" style="max-height: 400px;">
+                    <div class="card-body bg-light-blue flex-fill">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text">@item.Description</p>
+                    </div>
+                </div>
+            </div>
+        }
+        
+    </div>
+
+
+</div>

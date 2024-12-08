@@ -1,0 +1,31 @@
+﻿@using EntityLayer.Concrete
+@model List<Doctor>
+
+@{
+    ViewData["Title"] = "Doctors";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+
+<div class="container mt-5 text-light" style="max-width: 1500px;">
+    <!-- content - start -->
+    <div class="row mt-4">
+        <div class="col my-5 d-flex flex-column justify-content-center align-items-center border-bottom">
+            <h1 class="mt-4 text-center">Our Doctors</h1>
+            <p class="text-center mb-5">The Best Doctors, The Most Reliable Care for Your Health!</p>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            var counter = 0;
+            <div class="col-4 d-flex flex-column align-items-center mb-5">
+                <img src="@item.Photo" class="border" alt="@item.FirstName" style="width: 300px; height: 300px; border-width: 2px; border-color: white; border-radius: 20px;">
+                <h5 class="mt-3 text-center">Dr. @item.FirstName @item.LastName</h5>
+                <p class="text-center mb-1">No Clinic</p>
+                <p class="text-center mb-0">@item.Email</p>
+            </div>
+            counter++;
+        }
+    </div>
+</div>
