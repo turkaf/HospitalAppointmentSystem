@@ -9,7 +9,7 @@ namespace HospitalAppointmentSystem.Controllers
         DoctorManager doctorManager = new DoctorManager(new EfDoctorDal());
         public IActionResult Index()
         {
-            var values = doctorManager.TGetList();
+            var values = doctorManager.TGetListDoctorWithClinic();
 
             return View(values);
         }

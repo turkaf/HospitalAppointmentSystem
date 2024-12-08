@@ -18,14 +18,12 @@
     <div class="row">
         @foreach (var item in Model)
         {
-            var counter = 0;
             <div class="col-4 d-flex flex-column align-items-center mb-5">
                 <img src="@item.Photo" class="border" alt="@item.FirstName" style="width: 300px; height: 300px; border-width: 2px; border-color: white; border-radius: 20px;">
                 <h5 class="mt-3 text-center">Dr. @item.FirstName @item.LastName</h5>
-                <p class="text-center mb-1">No Clinic</p>
+                <p class="text-center mb-1">@item.Clinic.Name</p>
                 <p class="text-center mb-0">@item.Email</p>
             </div>
-            counter++;
         }
     </div>
 </div>

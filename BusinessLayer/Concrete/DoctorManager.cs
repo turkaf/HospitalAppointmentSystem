@@ -37,6 +37,11 @@ namespace BusinessLayer.Concrete
             return _doctorDal.GetList();
         }
 
+        public List<Doctor> TGetListDoctorWithClinic()
+        {
+            return _doctorDal.GetListDoctorWithClinic();
+        }
+
         public void TUpdate(Doctor t)
         {
             _doctorDal.Update(t);

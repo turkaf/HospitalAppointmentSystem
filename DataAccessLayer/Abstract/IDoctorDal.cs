@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IDoctorDal:IGenericDal<Doctor>
     {
+        public List<Doctor> GetListDoctorWithClinic();
     }
 }
