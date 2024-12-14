@@ -17,6 +17,7 @@ namespace BusinessLayer.Concrete
         {
             _doctorDal = doctorDal;
         }
+
         public void TAdd(Doctor t)
         {
             _doctorDal.Insert(t);
@@ -29,7 +30,7 @@ namespace BusinessLayer.Concrete
 
         public Doctor TGetByID(int id)
         {
-            throw new NotImplementedException();
+            return _doctorDal.GetByID(id);
         }
 
         public List<Doctor> TGetList()

@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "AddClinic";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center">
+    <h2>Add New Clinic</h2>
+</div>
+
+<!-- Add New Clinic Form -->
+<form class="mt-4" action="@Url.Action("AddClinic", "AdminClinics")" method="POST" enctype="multipart/form-data">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <div class="mb-3">
+        <label for="clinic_name" class="form-label">Clinic Name:</label>
+        <input type="text" id="clinic_name" name="Name" class="form-control" required>
+        @Html.ValidationMessage("Name", null, new { @class = "text-danger" })
+    </div>
+
+    <div class="mb-3">
+        <label for="clinic_photo" class="form-label">Clinic Photo:</label>
+        <input type="file" id="clinic_photo" name="Photo" class="form-control" accept="image/*" required>
+        @Html.ValidationMessage("Photo", null, new { @class = "text-danger" })
+    </div>
+
+    <div class="mb-3">
+        <label for="clinic_description" class="form-label">Clinic Description:</label>
+        <textarea id="clinic_description" name="Description" class="form-control" rows="4" required></textarea>
+        @Html.ValidationMessage("Description", null, new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Clinic</button>
+</form>

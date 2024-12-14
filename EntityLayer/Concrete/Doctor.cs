@@ -21,6 +21,6 @@ namespace EntityLayer.Concrete
 
         // Navigation Properties
         public virtual Clinic Clinic { get; set; }
-        public virtual List<Appointment> Appointments { get; set; }
+        public virtual List<Appointment>? Appointments { get; set; }
     }
 }

@@ -1,7 +1,21 @@
+using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
+using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IDoctorDal, EfDoctorDal>();
+builder.Services.AddScoped<IDoctorService, DoctorManager>();
+
+builder.Services.AddScoped<IClinicDal, EfClinicDal>();
+builder.Services.AddScoped<IClinicService, ClinicManager>();
+
+builder.Services.AddScoped<IPatientDal, EfPatientDal>();
+builder.Services.AddScoped<IPatientService, PatientManager>();
 
 var app = builder.Build();
 

@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -20,17 +21,17 @@ namespace BusinessLayer.Concrete
 
         public void TAdd(Clinic t)
         {
-            throw new NotImplementedException();
+            _clinicDal.Insert(t);
         }
 
         public void TDelete(Clinic t)
         {
-            throw new NotImplementedException();
+            _clinicDal.Delete(t);
         }
 
         public Clinic TGetByID(int id)
         {
-            throw new NotImplementedException();
+            return _clinicDal.GetByID(id);
         }
 
         public List<Clinic> TGetList()

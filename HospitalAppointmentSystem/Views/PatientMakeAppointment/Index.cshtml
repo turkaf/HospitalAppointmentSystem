@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewData["Title"] = "Make Appointment";
+    Layout = "~/Views/Shared/_PatientLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center">
+    <h2>Make Appointment</h2>
+</div>
+
+<!-- Appointment Form -->
+<form class="mt-4">
+    <div class="mb-3">
+        <label for="patientName" class="form-label">Patient Name</label>
+        <input type="text" class="form-control" id="patientName" value="Ahmet Faruk TÜRK" disabled>
+    </div>
+
+    <div class="mb-3">
+        <label for="appointmentDate" class="form-label">Select Appointment Date</label>
+        <input type="date" class="form-control" id="appointmentDate">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Select Appointment Time</label>
+        <div class="d-flex flex-wrap" role="group" aria-label="Appointment Times">
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time1" value="09:00">
+                <label class="form-check-label" for="time1">09:00 AM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time2" value="09:30">
+                <label class="form-check-label" for="time2">09:30 AM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time3" value="10:00">
+                <label class="form-check-label" for="time3">10:00 AM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time4" value="10:30">
+                <label class="form-check-label" for="time4">10:30 AM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time5" value="11:00">
+                <label class="form-check-label" for="time5">11:00 AM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time6" value="11:30">
+                <label class="form-check-label" for="time6">11:30 AM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time7" value="12:00">
+                <label class="form-check-label" for="time7">12:00 PM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time8" value="12:30">
+                <label class="form-check-label" for="time8">12:30 PM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time9" value="13:00">
+                <label class="form-check-label" for="time9">01:00 PM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time10" value="13:30">
+                <label class="form-check-label" for="time10">01:30 PM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time11" value="14:00">
+                <label class="form-check-label" for="time11">02:00 PM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time12" value="14:30">
+                <label class="form-check-label" for="time12">02:30 PM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time13" value="15:00">
+                <label class="form-check-label" for="time13">03:00 PM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time14" value="15:30">
+                <label class="form-check-label" for="time14">03:30 PM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time15" value="16:00">
+                <label class="form-check-label" for="time15">04:00 PM</label>
+            </div>
+            <div class="form-check w-20 me-2 mb-2">
+                <input class="form-check-input" type="radio" name="appointmentTime" id="time16" value="16:30">
+                <label class="form-check-label" for="time16">04:30 PM</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="clinic" class="form-label">Select Clinic</label>
+        <select class="form-select" id="clinic">
+            <option value="dermatology">Dermatology</option>
+            <option value="cardiology">Cardiology</option>
+            <option value="pediatrics">Pediatrics</option>
+            <option value="orthopedics">Orthopedics</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="doctor" class="form-label">Select Doctor</label>
+        <select class="form-select" id="doctor">
+            <option value="drEthan">Dr. Ethan Carter</option>
+            <option value="drEmily">Dr. Emily Watson</option>
+            <option value="drJohn">Dr. John Smith</option>
+        </select>
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary">Book Appointment</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+</form>

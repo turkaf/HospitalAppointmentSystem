@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewData["Title"] = "AddDoctor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center">
+    <h2>Add New Doctor</h2>
+</div>
+
+<form class="mt-4" action="@Url.Action("AddDoctor", "AdminDoctors")" method="POST" enctype="multipart/form-data">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    
+    <!-- Doctor First Name -->
+    <div class="mb-3">
+        <label for="doctor_first_name" class="form-label">Doctor First Name</label>
+        <input type="text" class="form-control" id="doctor_first_name" name="FirstName" required>
+        @Html.ValidationMessage("FirstName", null, new { @class = "text-danger" })
+    </div>
+
+    <!-- Doctor Last Name -->
+    <div class="mb-3">
+        <label for="doctor_last_name" class="form-label">Doctor Last Name</label>
+        <input type="text" class="form-control" id="doctor_last_name" name="LastName" required>
+        @Html.ValidationMessage("LastName", null, new { @class = "text-danger" })
+    </div>
+
+    <!-- Doctor Specialty -->
+    <div class="mb-3">
+        <label for="doctor_specialty" class="form-label">Doctor Specialty</label>
+        <select class="form-control" id="doctor_specialty" name="ClinicID" required>
+            <option value="">Select Clinic</option>
+            @foreach (var clinic in ViewBag.Clinics)
+            {
+                <option value="@clinic.ClinicID">@clinic.Name</option>
+            }
+        </select>
+        @Html.ValidationMessage("ClinicID", null, new { @class = "text-danger" })
+    </div>
+
+    <!-- Doctor Photo -->
+    <div class="mb-3">
+        <label for="doctor_photo" class="form-label">Doctor Photo</label>
+        <input type="file" class="form-control" id="doctor_photo" name="Photo" accept="image/*">
+        @Html.ValidationMessage("Photo", null, new { @class = "text-danger" })
+    </div>
+
+    <!-- Doctor Email -->
+    <div class="mb-3">
+        <label for="doctor_mail" class="form-label">Doctor Email</label>
+        <input type="email" class="form-control" id="doctor_mail" name="Email" required>
+        @Html.ValidationMessage("Email", null, new { @class = "text-danger" })
+    </div>
+
+    <!-- Doctor Password -->
+    <div class="mb-3">
+        <label for="doctor_password" class="form-label">Doctor Password</label>
+        <input type="password" class="form-control" id="doctor_password" name="Password" required>
+        @Html.ValidationMessage("Password", null, new { @class = "text-danger" })
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-success">Save Doctor</button>
+</form>

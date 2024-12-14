@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+
+        <div class="bg-dark text-white p-3" id="sidebar" style="width: 300px; min-height: 100vh;">
+            <h4 class="text-center border-bottom pb-2">Admin Panel</h4>
+            <ul class="list-unstyled">
+                <li>
+                    <a href="dashboard.html" class="btn btn-dark w-100 text-start py-3 mb-2">
+                        <i class="bi bi-house-door"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="doctors.html" class="btn btn-dark w-100 text-start py-3 mb-2">
+                        <i class="bi bi-person-fill"></i> Doctors
+                    </a>
+                </li>
+                <li>
+                    <a href="patients.html" class="btn btn-dark w-100 text-start py-3 mb-2">
+                        <i class="bi bi-person-badge"></i> Patients
+                    </a>
+                </li>
+                <li>
+                    <a href="clinics.html" class="btn btn-dark w-100 text-start py-3 mb-2">
+                        <i class="bi bi-hospital"></i> Clinics
+                    </a>
+                </li>
+                <li>
+                    <a href="appointments.html" class="btn btn-dark w-100 text-start py-3 mb-2">
+                        <i class="bi bi-calendar-check"></i> Appointments
+                    </a>
+                </li>
+                <li>
+                    <a href="checkups.html" class="btn btn-dark w-100 text-start py-3 mb-2">
+                        <i class="bi bi-person-check"></i> Checkups
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="btn btn-dark w-100 text-start py-3 mb-2">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="page-content-wrapper" class="w-100">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button class="btn btn-dark" id="menu-toggle">☰</button>
+                    <span class="navbar-text ms-auto">
+                        Welcome, Admin!
+                    </span>
+                </div>
+            </nav>
+
+            <div class="container mt-4">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>Clinics</h2>
+                    <button type="button" class="btn btn-info">Add New Clinic</button>
+                </div>
+
+                <table class="table table-striped mt-4">
+                    <thead>
+                        <tr>
+                            <th scope="col">Clinic ID</th>
+                            <th scope="col">Clinic Photo</th>
+                            <th scope="col">Clinic Name</th>
+                            <th scope="col">Clinic Description</th>
+                            <th scope="col">Settings</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1001</td>
+                            <td>
+                                <img src="../Frontend/images/Clinics/heart.jpg" style="max-height: 100px;" alt="">
+                            </td>
+                            <td>Cardiovascular Surgery</td>
+                            <td>Cardiac surgery is a branch of medicine that plays a critical role in treating heart
+                                diseases and improving heart function.
+                                The heart is one of the most important organs in the body, and its proper functioning is
+                                essential for all organs and tissues to function healthily. Heart diseases are one of
+                                the most common causes of death worldwide, and cardiac surgery offers an important
+                                solution in the treatment of these diseases.</td>
+                            <td>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1001</td>
+                            <td>
+                                <img src="../Frontend/images/Clinics/heart.jpg" style="max-height: 100px;" alt="">
+                            </td>
+                            <td>Cardiovascular Surgery</td>
+                            <td>Cardiac surgery is a branch of medicine that plays a critical role in treating heart
+                                diseases and improving heart function.
+                                The heart is one of the most important organs in the body, and its proper functioning is
+                                essential for all organs and tissues to function healthily. Heart diseases are one of
+                                the most common causes of death worldwide, and cardiac surgery offers an important
+                                solution in the treatment of these diseases.</td>
+                            <td>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1001</td>
+                            <td>
+                                <img src="../Frontend/images/Clinics/heart.jpg" style="max-height: 100px;" alt="">
+                            </td>
+                            <td>Cardiovascular Surgery</td>
+                            <td>Cardiac surgery is a branch of medicine that plays a critical role in treating heart
+                                diseases and improving heart function.
+                                The heart is one of the most important organs in the body, and its proper functioning is
+                                essential for all organs and tissues to function healthily. Heart diseases are one of
+                                the most common causes of death worldwide, and cardiac surgery offers an important
+                                solution in the treatment of these diseases.</td>
+                            <td>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function (e) {
+            e.preventDefault();
+            document.getElementById("sidebar").classList.toggle("d-none");
+        });
+    </script>
+</body>
+
+</html>

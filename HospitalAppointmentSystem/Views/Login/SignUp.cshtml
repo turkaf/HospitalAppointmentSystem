@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewData["Title"] = "SignUp";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+
+<div class="container mt-5 text-light mb-5" style="max-width: 1500px;">
+    <!-- content - start -->
+    <div class="row mt-4">
+        <div class="col my-5 d-flex flex-column justify-content-center align-items-center border-bottom">
+            <h1 class="mt-4 mb-5 text-center">Create Your Account</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col d-flex justify-content-center align-items-center">
+            <form class="w-100" style="max-width: 400px;">
+                <div class="d-flex">
+                    <!-- First Name input -->
+                    <div class="form-outline mb-4 mr-3">
+                        <label class="form-label" for="form2ExampleFirstName">First Name</label>
+                        <input type="text" id="form2ExampleFirstName" class="form-control" required />
+                    </div>
+
+                    <!-- Last Name input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form2ExampleLastName">Last Name</label>
+                        <input type="text" id="form2ExampleLastName" class="form-control" required />
+                    </div>
+                </div>
+
+
+                <!-- Identity Number input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form2ExampleIdentityNumber">Identity Number</label>
+                    <input type="text" id="form2ExampleIdentityNumber" class="form-control" required />
+                </div>
+
+                <!-- Date of Birth input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form2ExampleDOB">Date of Birth</label>
+                    <input type="date" id="form2ExampleDOB" class="form-control" required />
+                </div>
+
+                <!-- Gender input (radio buttons) -->
+                <div class="form-outline mb-4">
+                    <label class="form-label">Gender</label><br>
+                    <div class="d-flex">
+                        <div class="form-check mr-3">
+                            <input type="radio" id="genderMale" name="gender" class="form-check-input" />
+                            <label class="form-check-label" for="genderMale">Male</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" id="genderFemale" name="gender" class="form-check-input" />
+                            <label class="form-check-label" for="genderFemale">Female</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone Number input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form2ExamplePhoneNumber">Phone Number</label>
+                    <input type="tel" id="form2ExamplePhoneNumber" class="form-control" required />
+                </div>
+
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form2ExampleEmail">Email address</label>
+                    <input type="email" id="form2ExampleEmail" class="form-control" required />
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form2ExamplePassword">Password</label>
+                    <input type="password" id="form2ExamplePassword" class="form-control" required />
+                </div>
+
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form2ExamplePassword">Password Again</label>
+                    <input type="password" id="form2ExamplePassword" class="form-control" required />
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Sign Up</button>
+
+                <!-- Login prompt -->
+                <div class="text-center">
+                    <p>Already a member? <a href="/Login/SignIn">Login here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

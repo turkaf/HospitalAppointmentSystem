@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mb-4">Dashboard</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-header">Total Doctors</div>
+            <div class="card-body">
+                <h5 class="card-title">@ViewData["TotalDoctors"]</h5>
+                <p class="card-text">The total number of registered users.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-header">Total Patients</div>
+            <div class="card-body">
+                <h5 class="card-title">@ViewData["TotalPatients"]</h5>
+                <p class="card-text">Total number of completed orders.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-header">Total Appointments</div>
+            <div class="card-body">
+                <h5 class="card-title">No Info</h5>
+                <p class="card-text">Tasks awaiting review or approval.</p>
+            </div>
+        </div>
+    </div>
+</div>
