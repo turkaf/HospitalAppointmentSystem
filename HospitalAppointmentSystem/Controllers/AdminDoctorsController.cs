@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,8 @@ namespace HospitalAppointmentSystem.Controllers
 {
     public class AdminDoctorsController : Controller
     {
-        private readonly DoctorManager _doctorManager;
+        //private readonly DoctorManager _doctorManager;
+        private readonly IDoctorService _doctorManager;
         private readonly ClinicManager _clinicManager;
 
         public AdminDoctorsController()

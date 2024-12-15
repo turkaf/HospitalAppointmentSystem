@@ -26,7 +26,6 @@ namespace HospitalAppointmentSystem.Controllers
 
             if (patient != null)
             {
-                
                 _patientManager.TDelete(patient);
             }
 
