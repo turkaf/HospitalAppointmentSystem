@@ -43,5 +43,10 @@ namespace BusinessLayer.Concrete
         {
             throw new NotImplementedException();
         }
+
+        public Patient ValidatePatient(string email, string password)
+        {
+            return _patientDal.GetListByFilter(p => p.Email == email && p.Password == password).FirstOrDefault();
+        }
     }
 }

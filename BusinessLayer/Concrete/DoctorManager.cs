@@ -47,5 +47,10 @@ namespace BusinessLayer.Concrete
         {
             _doctorDal.Update(t);
         }
+
+        public Doctor ValidateDoctor(string email, string password)
+        {
+            return _doctorDal.GetListByFilter(d => d.Email == email && d.Password == password).FirstOrDefault();
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace BusinessLayer.Abstract
     public interface IDoctorService:IGenericService<Doctor>
     {
         List<Doctor> TGetListDoctorWithClinic();
+        Doctor ValidateDoctor(string email, string password);
     }
 }

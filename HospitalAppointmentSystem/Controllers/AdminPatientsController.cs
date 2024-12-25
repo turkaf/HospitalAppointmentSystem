@@ -1,9 +1,11 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalAppointmentSystem.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AdminPatientsController : Controller
     {
         private readonly PatientManager _patientManager;

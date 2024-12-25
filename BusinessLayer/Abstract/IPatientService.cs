@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
 {
     public interface IPatientService : IGenericService<Patient>
     {
+        Patient ValidatePatient(string email, string password);
     }
 }
