@@ -1,27 +1,33 @@
-﻿
-@{
-    ViewData["Title"] = "Dasboard";
+﻿@{
+    ViewData["Title"] = "Dashboard";
     Layout = "~/Views/Shared/_DoctorLayout.cshtml";
 }
 
-<h2 class="mb-4">Dashboard</h2>
+<h2 class="mb-4 fw-bold">Doctor Dashboard</h2>
 
 <div class="row">
-    <div class="col-md-6">
-        <div class="card text-white bg-primary mb-3">
-            <div class="card-header">Total Patients</div>
-            <div class="card-body">
-                <h5 class="card-title">5</h5>
-                <p class="card-text">The total number of registered users.</p>
+    <!-- Total Patients Card -->
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-lg border-0 text-white bg-gradient bg-primary h-100">
+            <div class="card-header fs-5 fw-semibold">
+                <i class="bi bi-person-lines-fill me-2"></i>Total Patients
+            </div>
+            <div class="card-body d-flex flex-column justify-content-between">
+                <h5 class="card-title fs-3 fw-bold">5</h5>
+                <p class="card-text">The total number of patients currently registered in the system.</p>
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="card text-white bg-warning mb-3">
-            <div class="card-header">Total Appointments</div>
-            <div class="card-body">
-                <h5 class="card-title">10</h5>
-                <p class="card-text">Tasks awaiting review or approval.</p>
+
+    <!-- Total Appointments Card -->
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-lg border-0 text-white bg-gradient bg-warning h-100">
+            <div class="card-header fs-5 fw-semibold">
+                <i class="bi bi-calendar-check me-2"></i>Total Appointments
+            </div>
+            <div class="card-body d-flex flex-column justify-content-between">
+                <h5 class="card-title fs-3 fw-bold">10</h5>
+                <p class="card-text">Total number of appointments scheduled for today.</p>
             </div>
         </div>
     </div>

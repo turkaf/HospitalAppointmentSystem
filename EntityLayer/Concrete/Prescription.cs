@@ -16,6 +16,5 @@ namespace EntityLayer.Concrete
         //Navigational Property
         public virtual Appointment Appointment { get; set; }
         public virtual List<PrescriptionMedicine> PrescriptionMedicines { get; set; }
-
     }
 }

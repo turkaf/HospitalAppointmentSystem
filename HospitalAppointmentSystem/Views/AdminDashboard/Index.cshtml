@@ -1,36 +1,49 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Admin Dashboard";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2 class="mb-4">Dashboard</h2>
+<h2 class="mb-4 fw-bold">Dashboard</h2>
 
 <div class="row">
+    <!-- Total Doctors Card -->
     <div class="col-md-4">
-        <div class="card text-white bg-primary mb-3">
-            <div class="card-header">Total Doctors</div>
+        <div class="card shadow-sm text-white bg-dark mb-4 d-flex flex-column h-100" style="background-color: #212121;">
+            <div class="card-header fs-5 fw-semibold" style="background-color: #181818;">
+                @* <span>Total Doctors</span> *@
+                <i class="bi bi-person-fill fs-4 me-2"></i>Total Doctors
+            </div>
             <div class="card-body">
-                <h5 class="card-title">@ViewData["TotalDoctors"]</h5>
-                <p class="card-text">The total number of registered users.</p>
+                <h5 class="card-title fw-bold fs-3">@ViewData["TotalDoctors"]</h5>
+                <p class="card-text">The total number of doctors currently registered in the system.</p>
             </div>
         </div>
     </div>
+
+    <!-- Total Patients Card -->
     <div class="col-md-4">
-        <div class="card text-white bg-success mb-3">
-            <div class="card-header">Total Patients</div>
+        <div class="card shadow-sm text-dark bg-light mb-4 d-flex flex-column h-100" style="background-color: #f0f0f0;">
+            <div class="card-header fs-5 fw-semibold" style="background-color: #e0e0e0;">
+                @* <span>Total Patients</span> *@
+                <i class="bi bi-person-badge fs-4 me-2"></i>Total Patients
+            </div>
             <div class="card-body">
-                <h5 class="card-title">@ViewData["TotalPatients"]</h5>
-                <p class="card-text">Total number of completed orders.</p>
+                <h5 class="card-title fw-bold fs-3">@ViewData["TotalPatients"]</h5>
+                <p class="card-text">Total number of patients currently in the system.</p>
             </div>
         </div>
     </div>
+
+    <!-- Total Appointments Card -->
     <div class="col-md-4">
-        <div class="card text-white bg-warning mb-3">
-            <div class="card-header">Total Appointments</div>
+        <div class="card shadow-sm text-white bg-dark mb-4 d-flex flex-column h-100" style="background-color: #212121;">
+            <div class="card-header fs-5 fw-semibold" style="background-color: #181818;">
+                @* <span>Total Appointments</span> *@
+                <i class="bi bi-calendar-check fs-4 me-2"></i>Total Appointments
+            </div>
             <div class="card-body">
-                <h5 class="card-title">No Info</h5>
-                <p class="card-text">Tasks awaiting review or approval.</p>
+                <h5 class="card-title fw-bold fs-3 me-2">No Info</h5>
+                <p class="card-text">Total number of appointments scheduled.</p>
             </div>
         </div>
     </div>

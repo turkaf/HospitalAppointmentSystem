@@ -9,14 +9,13 @@ namespace HospitalAppointmentSystem.Controllers
 {
     public class AdminDoctorsController : Controller
     {
-        //private readonly DoctorManager _doctorManager;
         private readonly IDoctorService _doctorManager;
-        private readonly ClinicManager _clinicManager;
+        private readonly IClinicService _clinicManager;
 
-        public AdminDoctorsController()
+        public AdminDoctorsController(IDoctorService doctorService, IClinicService clinicService)
         {
-            _doctorManager = new DoctorManager(new EfDoctorDal());
-            _clinicManager = new ClinicManager(new EfClinicDal());
+            _doctorManager = doctorService;
+            _clinicManager = clinicService;
         }
 
         public IActionResult Index()

@@ -6,25 +6,25 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="d-flex justify-content-between align-items-center">
-    <h2>Patients</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">Patients</h2>
 </div>
 
-<table class="table table-striped mt-4">
-    <thead>
+<table class="table table-bordered table-hover mt-4 mb-5">
+    <thead class="table-dark">
         <tr>
             <th scope="col">Patient ID</th>
-            <th scope="col">Patient Identity</th>
-            <th scope="col">Patient First Name</th>
-            <th scope="col">Patient Last Name</th>
-            <th scope="col">Patient Birthday</th>
-            <th scope="col">Patient Phone</th>
-            <th scope="col">Patient Mail</th>
+            <th scope="col">Identity</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
             <th scope="col">Settings</th>
         </tr>
     </thead>
     <tbody class="table-group-divider">
-        @foreach(var item in Model)
+        @foreach (var item in Model)
         {
             <tr>
                 <td>@item.PatientID</td>
@@ -35,9 +35,11 @@
                 <td>@item.Phone</td>
                 <td>@item.Email</td>
                 <td>
-                    <form action="@Url.Action("DeletePatient", "AdminPatients")" method="post" onsubmit="return confirm('Are you sure you want to delete this doctor?');">
+                    <form action="@Url.Action("DeletePatient", "AdminPatients")" method="post" onsubmit="return confirm('Are you sure you want to delete this patient?');">
                         <input type="hidden" name="PatientID" value="@item.PatientID" />
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger btn-sm" title="Delete">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </button>
                     </form>
                 </td>
             </tr>

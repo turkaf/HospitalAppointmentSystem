@@ -1,15 +1,14 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Checkups";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="d-flex justify-content-between align-items-center">
-    <h2>Checkups</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">Checkups</h2>
 </div>
 
-<table class="table table-striped mt-4">
-    <thead>
+<table class="table table-bordered table-hover mt-4 mb-5">
+    <thead class="table-dark">
         <tr>
             <th scope="col">Checkup ID</th>
             <th scope="col">Checkup Type</th>
@@ -23,23 +22,29 @@
             <td>Under 18</td>
             <td>Have you been vaccinated against measles in the last 6 months?</td>
             <td>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-danger btn-sm" title="Delete">
+                    <i class="bi bi-trash-fill"></i> Delete
+                </button>
             </td>
         </tr>
         <tr>
-            <td>1001</td>
+            <td>1002</td>
             <td>Under 18</td>
             <td>Have you been vaccinated against measles in the last 6 months?</td>
             <td>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-danger btn-sm" title="Delete">
+                    <i class="bi bi-trash-fill"></i> Delete
+                </button>
             </td>
         </tr>
         <tr>
-            <td>1001</td>
+            <td>1003</td>
             <td>Under 18</td>
             <td>Have you been vaccinated against measles in the last 6 months?</td>
             <td>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-danger btn-sm" title="Delete">
+                    <i class="bi bi-trash-fill"></i> Delete
+                </button>
             </td>
         </tr>
     </tbody>

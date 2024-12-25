@@ -1,60 +1,59 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Patients";
     Layout = "~/Views/Shared/_DoctorLayout.cshtml";
 }
 
-<div class="d-flex justify-content-between align-items-center">
-    <h2>Patients</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-dark">Patients</h2>
 </div>
 
-<table class="table table-striped table-borderless mt-4">
-    <thead>
+<table class="table table-hover table-bordered table-striped mt-4 shadow-sm rounded">
+    <thead class="table-dark">
         <tr>
             <th scope="col">Patient Identity</th>
-            <th scope="col">Patient First Name</th>
-            <th scope="col">Patient Last Name</th>
-            <th scope="col">Patient Birthday</th>
-            <th scope="col">Patient Phone</th>
-            <th scope="col">Patient Mail</th>
-            <th scope="col">Settings</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Birthday</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Mail</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
-    <tbody class="table-group-divider">
+    <tbody>
         <tr>
-            <td>20242757784</td>
-            <td>Ahmet Faruk</td>
-            <td>Türk</td>
+            <td>11111111111</td>
+            <td>John</td>
+            <td>Doe</td>
             <td>08.08.2001</td>
-            <td>05437431400</td>
-            <td>af_trk@hotmail.com</td>
-            <td>
-                <button type="button" class="btn btn-primary me-1">Appointment</button>
-                <button type="button" class="btn btn-warning">Prescribe</button>
+            <td>05555555555</td>
+            <td>john.doe@mail.com</td>
+            <td class="d-flex justify-content-start">
+                <button type="button" class="btn btn-primary btn-sm me-2">Appointment Detail</button>
+                <button type="button" class="btn btn-outline-warning btn-sm">Prescribe</button>
             </td>
         </tr>
         <tr>
-            <td>20242757784</td>
-            <td>Ahmet Faruk</td>
-            <td>Türk</td>
-            <td>08.08.2001</td>
-            <td>05437431400</td>
-            <td>af_trk@hotmail.com</td>
-            <td>
-                <button type="button" class="btn btn-primary me-1">Appointment</button>
-                <button type="button" class="btn btn-warning">Prescribe</button>
+            <td>11111111112</td>
+            <td>Jane</td>
+            <td>Smith</td>
+            <td>10.10.1995</td>
+            <td>05555555556</td>
+            <td>jane.smith@mail.com</td>
+            <td class="d-flex justify-content-start">
+                <button type="button" class="btn btn-primary btn-sm me-2">Appointment Detail</button>
+                <button type="button" class="btn btn-outline-warning btn-sm">Prescribe</button>
             </td>
         </tr>
         <tr>
-            <td>20242757784</td>
-            <td>Ahmet Faruk</td>
-            <td>Türk</td>
-            <td>08.08.2001</td>
-            <td>05437431400</td>
-            <td>af_trk@hotmail.com</td>
-            <td>
-                <button type="button" class="btn btn-primary me-1">Appointment</button>
-                <button type="button" class="btn btn-warning">Prescribe</button>
+            <td>11111111113</td>
+            <td>Michael</td>
+            <td>Johnson</td>
+            <td>15.05.1992</td>
+            <td>05555555557</td>
+            <td>michael.johnson@mail.com</td>
+            <td class="d-flex justify-content-start">
+                <button type="button" class="btn btn-primary btn-sm me-2">Appointment Detail</button>
+                <button type="button" class="btn btn-outline-warning btn-sm">Prescribe</button>
             </td>
         </tr>
     </tbody>
