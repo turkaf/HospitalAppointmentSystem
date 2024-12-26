@@ -18,7 +18,6 @@ namespace EntityLayer.Concrete
         public string Photo { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-
         // Navigation Properties
         public virtual Clinic Clinic { get; set; }
         public virtual List<Appointment>? Appointments { get; set; }

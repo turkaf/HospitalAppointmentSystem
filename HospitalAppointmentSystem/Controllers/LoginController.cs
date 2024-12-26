@@ -4,6 +4,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
+using EntityLayer.Enums;
 
 namespace HospitalAppointmentSystem.Controllers
 {
@@ -25,6 +26,32 @@ namespace HospitalAppointmentSystem.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult SignUp(string FirstName, string LastName, string IdentityNumber, DateTime DateOfBirth, GenderEnum Gender, string Phone, string Email, string Password)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            var newPatient = new Patient
+            {
+                FirstName = FirstName,
+                LastName = LastName,
+                IdentityNumber = IdentityNumber,
+                DateOfBirth = DateOfBirth,
+                Gender = Gender,
+                Phone = Phone,
+                Email = Email,
+                Password = Password
+            };
+
+            _patientService.TAdd(newPatient);
+
+            return RedirectToAction("SignIn");
+        }
+
 
         [HttpGet]
         public IActionResult SignIn()
@@ -97,7 +124,8 @@ namespace HospitalAppointmentSystem.Controllers
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, doctor.Email),
-                        new Claim(ClaimTypes.Role, "doctor")
+                        new Claim(ClaimTypes.Role, "doctor"),
+                        new Claim("DoctorID", doctor.DoctorID.ToString())
                     };
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

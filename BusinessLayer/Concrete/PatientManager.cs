@@ -21,7 +21,7 @@ namespace BusinessLayer.Concrete
 
         public void TAdd(Patient t)
         {
-            throw new NotImplementedException();
+            _patientDal.Insert(t);
         }
 
         public void TDelete(Patient t)

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<PatientViewModel>
+
+@{
     ViewData["Title"] = "Patients";
     Layout = "~/Views/Shared/_DoctorLayout.cshtml";
 }
@@ -22,35 +24,11 @@
     <tbody>
         <tr>
             <td>11111111111</td>
-            <td>John</td>
-            <td>Doe</td>
-            <td>08.08.2001</td>
-            <td>05555555555</td>
-            <td>john.doe@mail.com</td>
-            <td class="d-flex justify-content-start">
-                <button type="button" class="btn btn-primary btn-sm me-2">Appointment Detail</button>
-                <button type="button" class="btn btn-outline-warning btn-sm">Prescribe</button>
-            </td>
-        </tr>
-        <tr>
-            <td>11111111112</td>
-            <td>Jane</td>
-            <td>Smith</td>
-            <td>10.10.1995</td>
-            <td>05555555556</td>
-            <td>jane.smith@mail.com</td>
-            <td class="d-flex justify-content-start">
-                <button type="button" class="btn btn-primary btn-sm me-2">Appointment Detail</button>
-                <button type="button" class="btn btn-outline-warning btn-sm">Prescribe</button>
-            </td>
-        </tr>
-        <tr>
-            <td>11111111113</td>
-            <td>Michael</td>
-            <td>Johnson</td>
-            <td>15.05.1992</td>
-            <td>05555555557</td>
-            <td>michael.johnson@mail.com</td>
+            <td>FirstName</td>
+            <td>LastName</td>
+            <td>DateOfBirth.ToShortDateString()</td>
+            <td>Phone</td>
+            <td>Email</td>
             <td class="d-flex justify-content-start">
                 <button type="button" class="btn btn-primary btn-sm me-2">Appointment Detail</button>
                 <button type="button" class="btn btn-outline-warning btn-sm">Prescribe</button>

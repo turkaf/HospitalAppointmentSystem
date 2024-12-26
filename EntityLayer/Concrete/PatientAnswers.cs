@@ -14,7 +14,7 @@ namespace EntityLayer.Concrete
         public int PatientAnswersID { get; set; }
         public int PatientID { get; set; }
         public int CheckupID { get; set; }
-        public string Answer { get; set; }
+        public bool Answer { get; set; }
         // Navigation Properties
         public virtual Patient Patient { get; set; }
         public virtual Checkup Checkup { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityLayer.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,8 +15,7 @@ namespace EntityLayer.Concrete
         public string Question { get; set;}
         public int MinAge { get; set; }
         public int MaxAge { get; set; }
-        public string Gender { get; set; }
-        public bool Status { get; set;}
+        public GenderEnum Gender { get; set; }
         // Navigational Property
         public virtual List<PatientAnswers> PatientAnswers { get; set; }
     }
