@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<HospitalAppointmentSystem.Models.AppointmentListViewModel>
+
+@{
     ViewData["Title"] = "Appointments";
     Layout = "~/Views/Shared/_PatientLayout.cshtml";
 }
@@ -20,45 +22,48 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="table-hover">
-            <td>Ethan Carter</td>
-            <td>Dermatology</td>
-            <td>05.12.2024</td>
-            <td>13:30</td>
-            <td>
-                <span class="badge text-bg-warning">Pending</span>
-            </td>
-            <td>
-                <button type="button" class="btn btn-outline-primary me-1">View</button>
-                <button type="button" class="btn btn-outline-danger">Cancel</button>
-            </td>
-        </tr>
-        <tr class="table-hover">
-            <td>Ethan Carter</td>
-            <td>Dermatology</td>
-            <td>06.12.2024</td>
-            <td>14:30</td>
-            <td>
-                <span class="badge text-bg-success">Confirmed</span>
-            </td>
-            <td>
-                <button type="button" class="btn btn-outline-primary me-1">View</button>
-                <button type="button" class="btn btn-outline-danger">Cancel</button>
-            </td>
-        </tr>
-        <tr class="table-hover">
-            <td>Emily Watson</td>
-            <td>Cardiology</td>
-            <td>07.12.2024</td>
-            <td>10:00</td>
-            <td>
-                <span class="badge text-bg-info">Scheduled</span>
-            </td>
-            <td>
-                <button type="button" class="btn btn-outline-primary me-1">View</button>
-                <button type="button" class="btn btn-outline-danger">Cancel</button>
-            </td>
-        </tr>
+        @foreach(var item in Model)
+        {
+            <tr class="table-hover">
+                <td>@item.DoctorFirstName @item.DoctorLastName</td>
+                <td>@item.Clinic</td>
+                <td>@item.AppointmentDate</td>
+                <td>@item.AppointmentTime</td>
+                <td>
+                    @* <span class="badge text-bg-warning">Pending</span> *@
+                    @if (item.Status == null)
+                    {
+                        <span class="badge text-bg-warning">Pending</span>
+                    }
+                    else if (item.Status == false)
+                    {
+                        <span class="badge text-bg-danger">Cancelled</span>
+                    }
+                    else if (item.Status == true)
+                    {
+                        <span class="badge text-bg-success">Completed</span>
+                    }
+                </td>
+                <td>
+                    <div class="d-flex justify-content-start">
+                        @* <button type="button" class="btn btn-outline-primary me-2">View</button> *@
+                        <a href="@Url.Action("ViewDetails", "PatientAppointments", new { appointmentId = item.AppointmentID })" class="btn btn-outline-primary me-2">View</a>
+
+                        <form asp-action="CancelAppointment" method="post">
+                            <input type="hidden" name="appointmentId" value="@item.AppointmentID" />
+                            <button type="submit" class="btn btn-outline-danger"
+                            @if (item.Status != null)
+                            {
+                                @:disabled
+                            }
+                                    title="Cancel">
+                                <i class="bi bi-x-circle"></i> Cancel
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 

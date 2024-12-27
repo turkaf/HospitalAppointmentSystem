@@ -24,19 +24,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/DoctorPatients" class="btn btn-dark w-100 text-start py-3 mb-2">
-                        <i class="bi bi-person"></i> Patients
+                    <a href="/DoctorAppointments" class="btn btn-dark w-100 text-start py-3 mb-2">
+                        <i class="bi bi-person"></i> Appointments
                     </a>
                 </li>
-                <li>
-                    <a href="/DoctorPrescribe" class="btn btn-dark w-100 text-start py-3 mb-2">
-                        <i class="bi bi-pencil"></i> Prescribe
-                    </a>
                 </li>
                 <li>
-                    @* <a href="#" class="btn btn-dark w-100 text-start py-3 mb-2">
-                        <i class="bi bi-box-arrow-right"></i> Logout
-                    </a> *@
                     <form action="/Login/Logout" method="post">
                         <button type="submit" class="btn btn-dark w-100 text-start py-3 mb-2">
                             <i class="bi bi-box-arrow-right"></i> Logout
@@ -52,7 +45,7 @@
                 <div class="container-fluid">
                     <button class="btn btn-dark" id="menu-toggle">☰</button>
                     <span class="navbar-text ms-auto">
-                        Welcome, <b>Dr. Ethan C.!</b>
+                        Welcome, <b>Dr. @User.Claims.FirstOrDefault(c => c.Type == "FirstName")?.Value @User.Claims.FirstOrDefault(c => c.Type == "LastName")?.Value</b>
                     </span>
                 </div>
             </nav>

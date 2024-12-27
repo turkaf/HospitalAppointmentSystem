@@ -19,6 +19,13 @@ namespace BusinessLayer.Concrete
             _patientDal = patientDal;
         }
 
+        public IEnumerable<Patient> GetPatientsByDoctorId(int doctorId)
+        {
+            var patients = _patientDal.GetListByFilter(p => p.Appointments.Any(a => a.DoctorID == doctorId));
+
+            return patients;
+        }
+
         public void TAdd(Patient t)
         {
             _patientDal.Insert(t);

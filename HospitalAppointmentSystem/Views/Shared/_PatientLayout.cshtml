@@ -57,7 +57,7 @@
                 <div class="container-fluid">
                     <button class="btn btn-dark" id="menu-toggle">☰</button>
                     <span class="navbar-text ms-auto">
-                        Welcome, <b>Dear Patient1</b>
+                        Welcome, <b>Dear @User.Claims.FirstOrDefault(c => c.Type == "FirstName")?.Value @User.Claims.FirstOrDefault(c => c.Type == "LastName")?.Value</b>
                     </span>
                 </div>
             </nav>

@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,11 @@ namespace BusinessLayer.Concrete
             return _appointmentDal.GetListByFilter(a => a.DoctorID == doctorId).ToList();
         }
 
+        public List<Appointment> GetAppointmentsByPatientId(int patientId)
+        {
+            return _appointmentDal.GetListByFilter(a => a.PatientID == patientId).ToList();
+        }
+
         public void TAdd(Appointment t)
         {
             _appointmentDal.Insert(t);
@@ -41,6 +47,11 @@ namespace BusinessLayer.Concrete
         public List<Appointment> TGetList()
         {
             return _appointmentDal.GetList();
+        }
+
+        public List<Appointment> TGetListAppointmentWithPatient()
+        {
+            return _appointmentDal.GetListAppointmentWithPatient();
         }
 
         public void TUpdate(Appointment t)

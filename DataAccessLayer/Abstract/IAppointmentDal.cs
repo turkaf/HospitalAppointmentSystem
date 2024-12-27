@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IAppointmentDal : IGenericDal<Appointment>
     {
+        public List<Appointment> GetListAppointmentWithPatient();
     }
 }

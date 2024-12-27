@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using EntityLayer.Enums;
+using System.Numerics;
 
 namespace HospitalAppointmentSystem.Controllers
 {
@@ -59,41 +60,6 @@ namespace HospitalAppointmentSystem.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult SignIn(string email, string password, string role)
-        //{
-        //    if (role == "admin")
-        //    {
-        //        var admin = _adminService.ValidateAdmin(email, password);
-        //        if (admin != null)
-        //        {
-        //            HttpContext.Session.SetString("Role", "admin");
-        //            return RedirectToAction("Index", "AdminDashboard");
-        //        }
-        //    }
-        //    else if (role == "doctor")
-        //    {
-        //        var doctor = _doctorService.ValidateDoctor(email, password);
-        //        if (doctor != null)
-        //        {
-        //            HttpContext.Session.SetString("Role", "doctor");
-        //            return RedirectToAction("Index", "DoctorDashboard");
-        //        }
-        //    }
-        //    else if (role == "patient")
-        //    {
-        //        var patient = _patientService.ValidatePatient(email, password);
-        //        if (patient != null)
-        //        {
-        //            HttpContext.Session.SetString("Role", "patient");
-        //            return RedirectToAction("Index", "PatientDashboard");
-        //        }
-        //    }
-
-        //    ModelState.AddModelError("", "Invalid credentials or role.");
-        //    return View();
-        //}
-
         [HttpPost]
         public async Task<IActionResult> SignIn(string email, string password, string role)
         {
@@ -105,7 +71,8 @@ namespace HospitalAppointmentSystem.Controllers
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, admin.UserName),
-                        new Claim(ClaimTypes.Role, "admin")
+                        new Claim(ClaimTypes.Role, "admin"),
+                        new Claim("AminID", admin.AdminID.ToString())
                     };
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -125,7 +92,9 @@ namespace HospitalAppointmentSystem.Controllers
                     {
                         new Claim(ClaimTypes.Name, doctor.Email),
                         new Claim(ClaimTypes.Role, "doctor"),
-                        new Claim("DoctorID", doctor.DoctorID.ToString())
+                        new Claim("DoctorID", doctor.DoctorID.ToString()),
+                        new Claim("FirstName", doctor.FirstName),
+                        new Claim("LastName", doctor.LastName)
                     };
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -144,7 +113,10 @@ namespace HospitalAppointmentSystem.Controllers
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, patient.Email),
-                        new Claim(ClaimTypes.Role, "patient")
+                        new Claim(ClaimTypes.Role, "patient"),
+                        new Claim("PatientID", patient.PatientID.ToString()),
+                        new Claim("FirstName", patient.FirstName),
+                        new Claim("LastName", patient.LastName)
                     };
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

@@ -10,5 +10,7 @@ namespace BusinessLayer.Abstract
     public interface IAppointmentService : IGenericService<Appointment>
     {
         List<Appointment> GetAppointmentsByDoctorId(int doctorId);
+        List<Appointment> GetAppointmentsByPatientId(int patientId);
+        List<Appointment> TGetListAppointmentWithPatient();
     }
 }

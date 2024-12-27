@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Appointment>
+
+@{
     ViewData["Title"] = "Appointments";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -21,53 +23,51 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>1001</td>
-            <td>Patient1</td>
-            <td>Ethan Carter</td>
-            <td>Dermatology</td>
-            <td>05.12.2024</td>
-            <td>13:30</td>
-            <td>
-                <span class="badge text-bg-warning">Pending</span>
-            </td>
-            <td class="d-flex flex-column">
-                <button type="button" class="btn btn-danger btn-sm" title="Cancel">
-                    <i class="bi bi-x-circle"></i> Cancel
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td>1002</td>
-            <td>Patient2</td>
-            <td>Ethan Carter</td>
-            <td>Dermatology</td>
-            <td>05.12.2024</td>
-            <td>14:00</td>
-            <td>
-                <span class="badge text-bg-success">Confirmed</span>
-            </td>
-            <td class="d-flex flex-column">
-                <button type="button" class="btn btn-danger btn-sm" title="Cancel">
-                    <i class="bi bi-x-circle"></i> Cancel
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td>1003</td>
-            <td>Patient3</td>
-            <td>Ethan Carter</td>
-            <td>Dermatology</td>
-            <td>05.12.2024</td>
-            <td>15:00</td>
-            <td>
-                <span class="badge text-bg-danger">Cancelled</span>
-            </td>
-            <td class="d-flex flex-column">
-                <button type="button" class="btn btn-danger btn-sm" title="Cancel">
-                    <i class="bi bi-x-circle"></i> Cancel
-                </button>
-            </td>
-        </tr>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.AppointmentID</td>
+                <td>@item.Patient.FirstName @item.Patient.LastName</td>
+                <td>Dr. @item.Doctor.FirstName @item.Doctor.LastName</td>
+                <td>@item.Doctor.Clinic.Name</td>
+                <td>@item.AppointmentDate.ToString("dd.MM.yyyy")</td>
+                <td>@item.AppointmentTime.ToString(@"hh\:mm")</td>
+                <td>
+                    @if (item.Status == null)
+                    {
+                        <span class="badge text-bg-warning">Pending</span>
+                    }
+                    else if (item.Status == false)
+                    {
+                        <span class="badge text-bg-danger">Cancelled</span>
+                    }
+                    else if (item.Status == true)
+                    {
+                        <span class="badge text-bg-success">Completed</span>
+                    }
+                </td>
+                <td class="d-flex flex-column">
+                    @* <button type="button" class="btn btn-danger btn-sm"
+                    @if (item.Status != null)
+                    {
+                        @:disabled
+                    }
+                    title="Cancel">
+                        <i class="bi bi-x-circle"></i> Cancel
+                    </button> *@
+                    <form asp-action="CancelAppointment" method="post">
+                        <input type="hidden" name="appointmentId" value="@item.AppointmentID" />
+                        <button type="submit" class="btn btn-danger btn-sm"
+                        @if (item.Status != null)
+                        {
+                            @:disabled
+                        }
+                                title="Cancel">
+                            <i class="bi bi-x-circle"></i> Cancel
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
