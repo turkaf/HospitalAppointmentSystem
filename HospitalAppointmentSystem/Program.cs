@@ -48,6 +48,9 @@ builder.Services.AddScoped<IAdminService, AdminManager>();
 builder.Services.AddScoped<IAppointmentDal, EfAppointmentDal>();
 builder.Services.AddScoped<IAppointmentService, AppointmentManager>();
 
+builder.Services.AddScoped<ICheckupDal, EfCheckupDal>();
+builder.Services.AddScoped<ICheckupService, CheckupManager>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

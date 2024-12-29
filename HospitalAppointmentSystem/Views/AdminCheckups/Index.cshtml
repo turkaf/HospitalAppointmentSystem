@@ -1,51 +1,44 @@
-﻿@{
+﻿@model List<Checkup>
+
+@{
     ViewData["Title"] = "Checkups";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="fw-bold">Checkups</h2>
+    <button type="button" class="btn btn-outline-secondary" onclick="window.location.href='@Url.Action("AddCheckup", "AdminCheckups")'">Add New Checkup</button>
 </div>
 
 <table class="table table-bordered table-hover mt-4 mb-5">
     <thead class="table-dark">
         <tr>
             <th scope="col">Checkup ID</th>
-            <th scope="col">Checkup Type</th>
+            <th scope="col">Min Age</th>
+            <th scope="col">Max Age</th>
+            <th scope="col">Gender</th>
             <th scope="col">Checkup Question</th>
             <th scope="col">Settings</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td>1001</td>
-            <td>Under 18</td>
-            <td>Have you been vaccinated against measles in the last 6 months?</td>
-            <td>
-                <button type="button" class="btn btn-danger btn-sm" title="Delete">
-                    <i class="bi bi-trash-fill"></i> Delete
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td>1002</td>
-            <td>Under 18</td>
-            <td>Have you been vaccinated against measles in the last 6 months?</td>
-            <td>
-                <button type="button" class="btn btn-danger btn-sm" title="Delete">
-                    <i class="bi bi-trash-fill"></i> Delete
-                </button>
-            </td>
-        </tr>
-        <tr>
-            <td>1003</td>
-            <td>Under 18</td>
-            <td>Have you been vaccinated against measles in the last 6 months?</td>
-            <td>
-                <button type="button" class="btn btn-danger btn-sm" title="Delete">
-                    <i class="bi bi-trash-fill"></i> Delete
-                </button>
-            </td>
-        </tr>
+    <tbody class="table-group-divider">
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.CheckupID</td>
+                <td>@item.MinAge</td>
+                <td>@item.MaxAge</td>
+                <td>@item.Gender</td>
+                <td>@item.Question</td>
+                <td>
+                    <form action="@Url.Action("DeleteCheckup", "AdminCheckups")" method="post" onsubmit="return confirm('Are you sure you want to delete this clinic?');">
+                        <input type="hidden" name="CheckupID" value="@item.CheckupID" />
+                        <button type="submit" class="btn btn-danger btn-sm" title="Delete">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

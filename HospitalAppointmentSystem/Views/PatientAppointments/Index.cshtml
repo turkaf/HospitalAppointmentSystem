@@ -30,7 +30,6 @@
                 <td>@item.AppointmentDate</td>
                 <td>@item.AppointmentTime</td>
                 <td>
-                    @* <span class="badge text-bg-warning">Pending</span> *@
                     @if (item.Status == null)
                     {
                         <span class="badge text-bg-warning">Pending</span>
@@ -46,7 +45,6 @@
                 </td>
                 <td>
                     <div class="d-flex justify-content-start">
-                        @* <button type="button" class="btn btn-outline-primary me-2">View</button> *@
                         <a href="@Url.Action("ViewDetails", "PatientAppointments", new { appointmentId = item.AppointmentID })" class="btn btn-outline-primary me-2">View</a>
 
                         <form asp-action="CancelAppointment" method="post">

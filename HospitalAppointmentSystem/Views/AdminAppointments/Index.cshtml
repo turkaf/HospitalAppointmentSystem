@@ -47,14 +47,6 @@
                     }
                 </td>
                 <td class="d-flex flex-column">
-                    @* <button type="button" class="btn btn-danger btn-sm"
-                    @if (item.Status != null)
-                    {
-                        @:disabled
-                    }
-                    title="Cancel">
-                        <i class="bi bi-x-circle"></i> Cancel
-                    </button> *@
                     <form asp-action="CancelAppointment" method="post">
                         <input type="hidden" name="appointmentId" value="@item.AppointmentID" />
                         <button type="submit" class="btn btn-danger btn-sm"

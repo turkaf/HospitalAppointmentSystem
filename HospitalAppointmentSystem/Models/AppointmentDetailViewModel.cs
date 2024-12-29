@@ -1,4 +1,6 @@
-﻿namespace HospitalAppointmentSystem.Models
+﻿using EntityLayer.Enums;
+
+namespace HospitalAppointmentSystem.Models
 {
     public class AppointmentDetailViewModel
     {
@@ -6,6 +8,7 @@
         public string PatientFirstName { get; set; }
         public string PatientLastName { get; set; }
         public int PatientAge { get; set; }
+        public GenderEnum Gender { get; set; }
         public string PatientEmail { get; set; }
         public string PatientPhone { get; set; }
         public string AppointmentDate { get; set; }

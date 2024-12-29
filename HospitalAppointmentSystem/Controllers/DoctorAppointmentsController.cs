@@ -53,6 +53,7 @@ namespace HospitalAppointmentSystem.Controllers
                 PatientFirstName = appointment.Patient.FirstName,
                 PatientLastName = appointment.Patient.LastName,
                 PatientAge = DateTime.Now.Year - appointment.Patient.DateOfBirth.Year,
+                Gender = appointment.Patient.Gender,
                 PatientEmail = appointment.Patient.Email,
                 PatientPhone = appointment.Patient.Phone,
                 AppointmentDate = appointment.AppointmentDate.ToString("dd.MM.yyyy"),
