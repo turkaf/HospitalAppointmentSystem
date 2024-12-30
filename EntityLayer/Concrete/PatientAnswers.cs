@@ -15,7 +15,7 @@ namespace EntityLayer.Concrete
         public int AppointmentID { get; set; }
         public int CheckupID { get; set; }
         public bool Answer { get; set; }
-        public string PdfFile { get; set; }
+        public string? PdfFile { get; set; }
         // Navigation Properties
         public virtual Appointment Appointment { get; set; }
         public virtual Checkup Checkup { get; set; }

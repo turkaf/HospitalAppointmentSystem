@@ -10,15 +10,17 @@
 </div>
 
 <!-- Appointment Form -->
-<form class="mt-4">
+<form class="mt-4" action="@Url.Action("CreateAppointment", "PatientMakeAppointment")" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="patientName" class="form-label">Patient Name</label>
-        <input type="text" class="form-control" id="patientName" value="Patient1" disabled>
+        <input type="text" class="form-control" id="patientName" value="@ViewBag.PatientName" disabled>
     </div>
+
+    <input type="hidden" id="patientId" value="@ViewBag.PatientID" name="PatientID">
 
     <div class="mb-3">
         <label for="appointmentDate" class="form-label">Select Appointment Date</label>
-        <input type="date" class="form-control" id="appointmentDate">
+        <input type="date" class="form-control" id="appointmentDate" name="AppointmentDate" required>
     </div>
 
     <!-- Clinic Section -->
@@ -36,7 +38,7 @@
     <!-- Doctor Section -->
     <div class="mb-3">
         <label for="doctor" class="form-label">Select Doctor</label>
-        <select class="form-select" id="doctor" name="DoctorID">
+        <select class="form-select" id="doctor" name="DoctorID" required>
             <option value="">Select Doctor</option>
         </select>
     </div>
@@ -46,68 +48,68 @@
         <label class="form-label">Select Appointment Time</label>
         <div class="d-flex flex-wrap" role="group" aria-label="Appointment Times">
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time1" value="09:00">
-                <label class="form-check-label" for="time1">09:00 AM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time1" value="09:00">
+                <label class="form-check-label" for="time1">09:00</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time2" value="09:30">
-                <label class="form-check-label" for="time2">09:30 AM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time2" value="09:30">
+                <label class="form-check-label" for="time2">09:30</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time3" value="10:00">
-                <label class="form-check-label" for="time3">10:00 AM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time3" value="10:00">
+                <label class="form-check-label" for="time3">10:00</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time4" value="10:30">
-                <label class="form-check-label" for="time4">10:30 AM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time4" value="10:30">
+                <label class="form-check-label" for="time4">10:30</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time5" value="11:00">
-                <label class="form-check-label" for="time5">11:00 AM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time5" value="11:00">
+                <label class="form-check-label" for="time5">11:00</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time6" value="11:30">
-                <label class="form-check-label" for="time6">11:30 AM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time6" value="11:30">
+                <label class="form-check-label" for="time6">11:30</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time7" value="12:00">
-                <label class="form-check-label" for="time7">12:00 PM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time7" value="12:00">
+                <label class="form-check-label" for="time7">12:00</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time8" value="12:30">
-                <label class="form-check-label" for="time8">12:30 PM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time8" value="12:30">
+                <label class="form-check-label" for="time8">12:30</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time9" value="13:00">
-                <label class="form-check-label" for="time9">01:00 PM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time9" value="13:00">
+                <label class="form-check-label" for="time9">13:00</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time10" value="13:30">
-                <label class="form-check-label" for="time10">01:30 PM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time10" value="13:30">
+                <label class="form-check-label" for="time10">13:30</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time11" value="14:00">
-                <label class="form-check-label" for="time11">02:00 PM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time11" value="14:00">
+                <label class="form-check-label" for="time11">14:00</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time12" value="14:30">
-                <label class="form-check-label" for="time12">02:30 PM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time12" value="14:30">
+                <label class="form-check-label" for="time12">14:30</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time13" value="15:00">
-                <label class="form-check-label" for="time13">03:00 PM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time13" value="15:00">
+                <label class="form-check-label" for="time13">15:00</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time14" value="15:30">
-                <label class="form-check-label" for="time14">03:30 PM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time14" value="15:30">
+                <label class="form-check-label" for="time14">15:30</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time15" value="16:00">
-                <label class="form-check-label" for="time15">04:00 PM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time15" value="16:00">
+                <label class="form-check-label" for="time15">16:00</label>
             </div>
             <div class="form-check w-20 me-2 mb-2">
-                <input class="form-check-input" type="radio" name="appointmentTime" id="time16" value="16:30">
-                <label class="form-check-label" for="time16">04:30 PM</label>
+                <input class="form-check-input" type="radio" name="AppointmentTime" id="time16" value="16:30">
+                <label class="form-check-label" for="time16">16:30</label>
             </div>
         </div>
     </div>
@@ -116,20 +118,24 @@
     @foreach(var item in Model.AvailableCheckups)
     {
         <div class="mb-3">
-            <label for="checkup1" class="form-label">@item.Question</label>
+            <label for="checkup-@item.CheckupID" class="form-label">@item.Question</label>
 
             <div class="d-flex align-items-center">
+                <!-- Yes Radio Button -->
                 <div class="form-check form-check-inline">
-                    <input type="radio" id="checkupYes@item.CheckupID" name="checkupYes@item.CheckupID" value="yes" class="form-check-input">
-                    <label for="checkup1Yes" class="form-check-label">Yes</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input type="radio" id="checkupNo@item.CheckupID" name="checkupNo@item.CheckupID" value="no" class="form-check-input">
-                    <label for="checkup1No" class="form-check-label">No</label>
+                    <input type="radio" id="checkupYes-@item.CheckupID" name="answers[@item.CheckupID]" value="yes" class="form-check-input checkupYesNo" data-checkup-id="@item.CheckupID">
+                    <label for="checkupYes-@item.CheckupID" class="form-check-label">Yes</label>
                 </div>
 
-                <div class="ms-3">
-                    <input type="file" id="checkupFile@item.CheckupID" name="checkupFile@item.CheckupID" accept=".pdf" class="form-control">
+                <!-- No Radio Button -->
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="checkupNo-@item.CheckupID" name="answers[@item.CheckupID]" value="no" class="form-check-input checkupYesNo" data-checkup-id="@item.CheckupID">
+                    <label for="checkupNo-@item.CheckupID" class="form-check-label">No</label>
+                </div>
+
+                <!-- PDF Upload Section (Initially Hidden) -->
+                <div class="ms-3 checkupFileSection-@item.CheckupID" style="display:none;">
+                    <input type="file" id="checkupFile-@item.CheckupID" name="pdfFiles" accept=".pdf" class="form-control">
                 </div>
             </div>
         </div>
@@ -142,35 +148,12 @@
     </div>
 </form>
 
-@* <script>
-    document.getElementById("clinic").addEventListener("change", function () {
-        const clinicId = this.value;
-        const doctorSelect = document.getElementById("doctor");
-
-        doctorSelect.innerHTML = '<option value="">Select Doctor</option>';
-
-        if (clinicId) {
-            fetch(`/PatientMakeAppointment/GetDoctorsByClinic?clinicId=${clinicId}`)
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(doctor => {
-                        const option = document.createElement("option");
-                        option.value = doctor.ID;
-                        option.textContent = doctor.Name;
-                        doctorSelect.appendChild(option);
-                    });
-                })
-                .catch(error => console.error('Error fetching doctors:', error));
-        }
-    });
-</script> *@
-
 <script>
     document.getElementById("clinic").addEventListener("change", function () {
         const clinicId = this.value;
         const doctorSelect = document.getElementById("doctor");
 
-        doctorSelect.innerHTML = '<option value="">Select Doctor</option>';  // Boş seçenek ekliyoruz
+        doctorSelect.innerHTML = '<option value="">Select Doctor</option>';
 
         if (clinicId) {
             fetch(`/PatientMakeAppointment/GetDoctorsByClinic?clinicId=${clinicId}`)
@@ -202,4 +185,39 @@
         }
     });
 
+</script>
+
+<script>
+    document.querySelectorAll('.checkupYesNo').forEach(function (radioBtn) {
+        radioBtn.addEventListener('change', function () {
+            // Checkup ID'yi alıyoruz
+            const checkupId = this.getAttribute('data-checkup-id');
+
+            console.log("Checkup ID: ", checkupId);  // checkupId'nin doğru alınıp alınmadığını kontrol edin
+
+            // İlgili file input bölmesini bul
+            const fileSection = document.querySelector(`.checkupFileSection-${checkupId}`);
+
+            // Eğer fileSection null ise, bu durumda bir hata mesajı gösterelim
+            if (!fileSection) {
+                console.error(`File section not found for Checkup ID: ${checkupId}`);
+                return;
+            }
+
+            // Eğer 'Yes' seçildiyse, PDF alanını göster
+            if (this.value === 'yes') {
+                fileSection.style.display = 'block';
+            }
+            // Eğer 'No' seçildiyse, PDF alanını gizle
+            else if (this.value === 'no') {
+                fileSection.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<script>
+    const today = new Date().toISOString().split('T')[0];
+
+    document.getElementById("appointmentDate").setAttribute("min", today);
 </script>
