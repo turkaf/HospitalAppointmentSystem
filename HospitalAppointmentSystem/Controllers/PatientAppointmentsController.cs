@@ -9,10 +9,12 @@ namespace HospitalAppointmentSystem.Controllers
     public class PatientAppointmentsController : Controller
     {
         IAppointmentService _appointmentService;
+        IPatientAnswersService _patientAnswersService;
 
-        public PatientAppointmentsController(IAppointmentService appointmentService)
+        public PatientAppointmentsController(IAppointmentService appointmentService, IPatientAnswersService patientAnswersService)
         {
             _appointmentService = appointmentService;
+            _patientAnswersService = patientAnswersService;
         }
 
         public IActionResult Index()
@@ -61,9 +63,12 @@ namespace HospitalAppointmentSystem.Controllers
                 return NotFound();
             }
 
+            var patientAnswers = _patientAnswersService.TGetListAnswersWithCheckups()
+                .Where(pa => pa.AppointmentID == appointmentId)
+                .ToList();
+
             var appointmentDetails = new PatientAppointmentDetailViewModel
             {
-                //AppointmentID = appointment.AppointmentID,
                 PatientFirstName = appointment.Patient.FirstName,
                 PatientLastName = appointment.Patient.LastName,
                 PatientAge = DateTime.Now.Year - appointment.Patient.DateOfBirth.Year,
@@ -75,7 +80,9 @@ namespace HospitalAppointmentSystem.Controllers
                 Clinic = appointment.Doctor.Clinic.Name,
                 DoctorFirstName = appointment.Doctor.FirstName,
                 DoctorLastName = appointment.Doctor.LastName,
-                Status = appointment.Status
+                Status = appointment.Status,
+
+                PatientAnswersList = patientAnswers
             };
 
             return View(appointmentDetails);

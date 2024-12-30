@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
 {
     public interface IPatientAnswersService : IGenericService<PatientAnswers>
     {
+        List<PatientAnswers> TGetListAnswersWithCheckups();
     }
 }

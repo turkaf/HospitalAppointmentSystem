@@ -34,17 +34,35 @@
     </div>
 </div>
 
-<div class="card mt-4">
-    <div class="card-header">
-        <h4>Last Checkup Details</h4>
+@if(Model.PatientAnswersList != null)
+{
+    <div class="card mt-4">
+        <div class="card-header">
+            <h4>Last Checkup Details</h4>
+        </div>
+        @foreach (var answer in Model.PatientAnswersList)
+        {
+            <div class="card-body">
+                <p><strong>Checkup Type:</strong> @answer.Checkup.Question</p>
+                <p><strong>Minimum Age Criteria:</strong> @answer.Checkup.MinAge</p>
+                <p><strong>Maximum Age Criteria:</strong> @answer.Checkup.MaxAge</p>
+                <p><strong>Gender Criteria:</strong> @answer.Checkup.Gender</p>
+                @if (answer.PdfFile != null)
+                {
+                    <p><strong>File:</strong> <a href="@answer.PdfFile">Click to download</a></p>
+                }
+                @if (answer.Answer)
+                {
+                    <p><strong>Status:</strong> <span class="badge text-bg-success">AVAILABLE</span></p>
+                }
+                else
+                {
+                    <p><strong>Status:</strong> <span class="badge text-bg-danger">NOT AVAILABLE</span></p>
+                }
+            </div>
+        }
     </div>
-    <div class="card-body">
-        <p><strong>Checkup Type:</strong> Under 18</p>
-        <p><strong>Checkup Name:</strong> Measles Vaccine</p>
-        <p><strong>Status:</strong> <span class="badge text-bg-success">Done</span></p>
-        <p><strong>File:</strong> <a href="#">example.pdf</a></p>
-    </div>
-</div>
+}
 
 <div class="card mt-4">
     <div class="card-header">

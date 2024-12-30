@@ -38,6 +38,11 @@ namespace BusinessLayer.Concrete
             return _patientAnswersDal.GetList();
         }
 
+        public List<PatientAnswers> TGetListAnswersWithCheckups()
+        {
+            return _patientAnswersDal.GetListAnswersWithCheckups();
+        }
+
         public void TUpdate(PatientAnswers t)
         {
             _patientAnswersDal.Update(t);

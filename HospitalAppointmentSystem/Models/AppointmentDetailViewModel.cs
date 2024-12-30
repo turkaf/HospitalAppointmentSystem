@@ -1,4 +1,5 @@
-﻿using EntityLayer.Enums;
+﻿using EntityLayer.Concrete;
+using EntityLayer.Enums;
 
 namespace HospitalAppointmentSystem.Models
 {
@@ -15,5 +16,6 @@ namespace HospitalAppointmentSystem.Models
         public string AppointmentTime { get; set; }
         public string ClinicName { get; set; }
         public bool? Status { get; set; }
+        public List<PatientAnswers> PatientAnswersList { get; set; }
     }
 }

@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IPatientAnswersDal : IGenericDal<PatientAnswers>
     {
+        public List<PatientAnswers> GetListAnswersWithCheckups();
     }
 }

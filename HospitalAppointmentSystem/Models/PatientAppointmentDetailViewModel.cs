@@ -1,10 +1,10 @@
-﻿using EntityLayer.Enums;
+﻿using EntityLayer.Concrete;
+using EntityLayer.Enums;
 
 namespace HospitalAppointmentSystem.Models
 {
     public class PatientAppointmentDetailViewModel
     {
-        //public int AppointmentID { get; set; }
         public string PatientFirstName { get; set; }
         public string PatientLastName { get; set; }
         public int PatientAge { get; set; }
@@ -17,5 +17,7 @@ namespace HospitalAppointmentSystem.Models
         public string DoctorFirstName { get; set; }
         public string DoctorLastName { get; set; }
         public bool? Status { get; set; }
+
+        public List<PatientAnswers> PatientAnswersList { get; set; }
     }
 }

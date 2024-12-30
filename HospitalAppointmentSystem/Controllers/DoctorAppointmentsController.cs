@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using EntityLayer.Concrete;
 using HospitalAppointmentSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace HospitalAppointmentSystem.Controllers
     public class DoctorAppointmentsController : Controller
     {
         IAppointmentService _appointmentService;
+        IPatientAnswersService _patientAnswersService;
 
-        public DoctorAppointmentsController(IAppointmentService appointmentService)
+        public DoctorAppointmentsController(IAppointmentService appointmentService, IPatientAnswersService patientAnswersService)
         {
             _appointmentService = appointmentService;
+            _patientAnswersService = patientAnswersService;
         }
 
         public IActionResult Index()
@@ -47,6 +50,10 @@ namespace HospitalAppointmentSystem.Controllers
                 return NotFound();
             }
 
+            var patientAnswers = _patientAnswersService.TGetListAnswersWithCheckups()
+                .Where(pa => pa.AppointmentID == id)
+                .ToList();
+
             var appointmentDetailViewModel = new AppointmentDetailViewModel
             {
                 AppointmentID = appointment.AppointmentID,
@@ -59,7 +66,9 @@ namespace HospitalAppointmentSystem.Controllers
                 AppointmentDate = appointment.AppointmentDate.ToString("dd.MM.yyyy"),
                 AppointmentTime = appointment.AppointmentTime.ToString(@"hh\:mm"),
                 ClinicName = appointment.Doctor.Clinic.Name,
-                Status = appointment.Status
+                Status = appointment.Status,
+
+                PatientAnswersList = patientAnswers
             };
 
             return View(appointmentDetailViewModel);

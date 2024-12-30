@@ -120,28 +120,29 @@
         <div class="mb-3">
             <label for="checkup-@item.CheckupID" class="form-label">@item.Question</label>
 
+            <input type="hidden" id="checkupId" value="@item.CheckupID" name="checkupIds[@item.CheckupID]">
+
             <div class="d-flex align-items-center">
                 <!-- Yes Radio Button -->
                 <div class="form-check form-check-inline">
-                    <input type="radio" id="checkupYes-@item.CheckupID" name="answers[@item.CheckupID]" value="yes" class="form-check-input checkupYesNo" data-checkup-id="@item.CheckupID">
+                    <input type="radio" id="checkupYes-@item.CheckupID" name="answers[@item.CheckupID]" value="true" class="form-check-input checkupYesNo" data-checkup-id="@item.CheckupID">
                     <label for="checkupYes-@item.CheckupID" class="form-check-label">Yes</label>
                 </div>
 
                 <!-- No Radio Button -->
                 <div class="form-check form-check-inline">
-                    <input type="radio" id="checkupNo-@item.CheckupID" name="answers[@item.CheckupID]" value="no" class="form-check-input checkupYesNo" data-checkup-id="@item.CheckupID">
+                    <input type="radio" id="checkupNo-@item.CheckupID" name="answers[@item.CheckupID]" value="false" class="form-check-input checkupYesNo" data-checkup-id="@item.CheckupID">
                     <label for="checkupNo-@item.CheckupID" class="form-check-label">No</label>
                 </div>
 
                 <!-- PDF Upload Section (Initially Hidden) -->
                 <div class="ms-3 checkupFileSection-@item.CheckupID" style="display:none;">
-                    <input type="file" id="checkupFile-@item.CheckupID" name="pdfFiles" accept=".pdf" class="form-control">
+                    <input type="file" id="checkupFile-@item.CheckupID" name="pdfFiles[@item.CheckupID]" accept=".pdf" class="form-control">
                 </div>
             </div>
         </div>
     }
     
-
     <div class="d-flex justify-content-between">
         <button type="submit" class="btn btn-primary">Make Appointment</button>
         <button type="reset" class="btn btn-secondary">Reset</button>
@@ -195,21 +196,19 @@
 
             console.log("Checkup ID: ", checkupId);  // checkupId'nin doğru alınıp alınmadığını kontrol edin
 
-            // İlgili file input bölmesini bul
             const fileSection = document.querySelector(`.checkupFileSection-${checkupId}`);
 
-            // Eğer fileSection null ise, bu durumda bir hata mesajı gösterelim
             if (!fileSection) {
                 console.error(`File section not found for Checkup ID: ${checkupId}`);
                 return;
             }
 
             // Eğer 'Yes' seçildiyse, PDF alanını göster
-            if (this.value === 'yes') {
+            if (this.value === 'true') {
                 fileSection.style.display = 'block';
             }
             // Eğer 'No' seçildiyse, PDF alanını gizle
-            else if (this.value === 'no') {
+            else if (this.value === 'false') {
                 fileSection.style.display = 'none';
             }
         });

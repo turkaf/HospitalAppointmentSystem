@@ -75,62 +75,9 @@ namespace HospitalAppointmentSystem.Controllers
             return Json(filteredDoctors);
         }
 
-        //[HttpPost]
-        //public IActionResult CreateAppointment(AppointmentViewModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        var clinics = _clinicManager.TGetList();
-        //        ViewBag.Clinics = clinics;
-
-        //        var availableCheckups = _checkupService.TGetList();
-        //        var patient = _patientService.TGetByID(model.PatientID);
-
-        //        var patientAge = CalculateAge(patient.DateOfBirth);
-
-        //        var filteredCheckups = availableCheckups.Where(checkup =>
-        //            checkup.MinAge <= patientAge &&
-        //            checkup.MaxAge >= patientAge &&
-        //            checkup.Gender == patient.Gender).ToList();
-
-        //        var viewModel = new PatientCheckupViewModel
-        //        {
-        //            AvailableCheckups = filteredCheckups
-        //        };
-
-        //        return View("Index", viewModel);
-        //    }
-
-        //    var patientId = model.PatientID;
-        //    var appointment = new Appointment
-        //    {
-        //        PatientID = patientId,
-        //        DoctorID = model.DoctorID,
-        //        AppointmentDate = model.AppointmentDate,
-        //        AppointmentTime = model.AppointmentTime,
-        //        Status = true
-        //    };
-
-        //    _appointmentService.TAdd(appointment);
-
-        //    foreach (var checkupAnswer in model.PatientAnswers)
-        //    {
-        //        var patientAnswer = new PatientAnswers
-        //        {
-        //            AppointmentID = appointment.AppointmentID,
-        //            CheckupID = checkupAnswer.CheckupID,
-        //            Answer = checkupAnswer.Answer,
-        //            PdfFile = checkupAnswer.PdfFile
-        //        };
-
-        //        _patientAnswersService.TAdd(patientAnswer);
-        //    }
-
-        //    return RedirectToAction("Index");
-        //}
-
         [HttpPost]
-        public IActionResult CreateAppointment(int PatientID, int DoctorID, DateTime AppointmentDate, TimeSpan AppointmentTime, int[] checkupIds, bool[] answers, IFormFile[] pdfFiles)
+        public IActionResult CreateAppointment(int PatientID, int DoctorID, DateTime AppointmentDate, TimeSpan AppointmentTime,
+            Dictionary<int, string> checkupIds, Dictionary<int, bool> answers, IFormFile[] pdfFiles)
         {
             if (!ModelState.IsValid)
             {
@@ -154,41 +101,44 @@ namespace HospitalAppointmentSystem.Controllers
             var appointment = new Appointment
             {
                 PatientID = PatientID,
-                DoctorID = doctorId,
-                AppointmentDate = appointmentDate,
-                AppointmentTime = appointmentTime,
-                Status = true
+                DoctorID = DoctorID,
+                AppointmentDate = AppointmentDate,
+                AppointmentTime = AppointmentTime
             };
 
             _appointmentService.TAdd(appointment);
 
-            for (int i = 0; i < checkupIds.Length; i++)
+            for (int i = 0; i < checkupIds.Count; i++)
             {
+                var checkupId = checkupIds.Keys.ElementAt(i);
+                var answer = answers[checkupId];
+
+                var pdffile = pdfFiles;
+
                 var patientAnswer = new PatientAnswers
                 {
                     AppointmentID = appointment.AppointmentID,
-                    CheckupID = checkupIds[i],
-                    Answer = answers[i],
-                    PdfFile = pdfFiles[i]?.FileName
+                    CheckupID = checkupId,
+                    Answer = answer,
+                    PdfFile = pdfFiles.Length > i ? pdfFiles[i]?.FileName : null
                 };
 
-                if (pdfFiles[i] != null)
+                if (patientAnswer.PdfFile != null)
                 {
-                    var filePath = Path.Combine("uploads", pdfFiles[i].FileName);
-                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    var filePath = Path.Combine("uploads", "uploadpdf", patientAnswer.PdfFile);
+                    Directory.CreateDirectory(Path.Combine("wwwroot", "uploads", "uploadpdf"));
+                    using (var stream = new FileStream(Path.Combine("wwwroot", filePath), FileMode.Create))
                     {
                         pdfFiles[i].CopyTo(stream);
                     }
-
                     patientAnswer.PdfFile = filePath;
                 }
 
                 _patientAnswersService.TAdd(patientAnswer);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "PatientAppointments");
         }
-
 
         private int CalculateAge(DateTime birthDate)
         {
