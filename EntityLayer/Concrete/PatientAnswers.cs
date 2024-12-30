@@ -12,11 +12,12 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int PatientAnswersID { get; set; }
-        public int PatientID { get; set; }
+        public int AppointmentID { get; set; }
         public int CheckupID { get; set; }
         public bool Answer { get; set; }
+        public string PdfFile { get; set; }
         // Navigation Properties
-        public virtual Patient Patient { get; set; }
+        public virtual Appointment Appointment { get; set; }
         public virtual Checkup Checkup { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿
+﻿@model PatientCheckupViewModel
+
 @{
     ViewData["Title"] = "Make Appointment";
     Layout = "~/Views/Shared/_PatientLayout.cshtml";
@@ -23,13 +24,6 @@
     <!-- Clinic Section -->
     <div class="mb-3">
         <label for="clinic" class="form-label">Select Clinic</label>
-        @* <select class="form-select" id="clinic">
-            <option value="dermatology">Dermatology</option>
-            <option value="cardiology">Cardiology</option>
-            <option value="pediatrics">Pediatrics</option>
-            <option value="orthopedics">Orthopedics</option>
-        </select> *@
-
         <select class="form-control" id="clinic" name="ClinicID" required>
             <option value="">Select Clinic</option>
             @foreach (var clinic in ViewBag.Clinics)
@@ -42,10 +36,8 @@
     <!-- Doctor Section -->
     <div class="mb-3">
         <label for="doctor" class="form-label">Select Doctor</label>
-        <select class="form-select" id="doctor">
-            <option value="drEthan">Dr. Ethan Carter</option>
-            <option value="drEmily">Dr. Emily Watson</option>
-            <option value="drJohn">Dr. John Smith</option>
+        <select class="form-select" id="doctor" name="DoctorID">
+            <option value="">Select Doctor</option>
         </select>
     </div>
 
@@ -121,27 +113,93 @@
     </div>
 
     <!-- Checkup Qeuestions Section -->
-    <div class="mb-3">
-        <label for="checkup1" class="form-label">Checkup1</label>
+    @foreach(var item in Model.AvailableCheckups)
+    {
+        <div class="mb-3">
+            <label for="checkup1" class="form-label">@item.Question</label>
 
-        <div class="d-flex align-items-center">
-            <div class="form-check form-check-inline">
-                <input type="radio" id="checkup1Yes" name="checkup1" value="yes" class="form-check-input">
-                <label for="checkup1Yes" class="form-check-label">Yes</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input type="radio" id="checkup1No" name="checkup1" value="no" class="form-check-input">
-                <label for="checkup1No" class="form-check-label">No</label>
-            </div>
+            <div class="d-flex align-items-center">
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="checkupYes@item.CheckupID" name="checkupYes@item.CheckupID" value="yes" class="form-check-input">
+                    <label for="checkup1Yes" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="checkupNo@item.CheckupID" name="checkupNo@item.CheckupID" value="no" class="form-check-input">
+                    <label for="checkup1No" class="form-check-label">No</label>
+                </div>
 
-            <div class="ms-3">
-                <input type="file" id="checkup1File" name="checkup1File" accept=".pdf" class="form-control">
+                <div class="ms-3">
+                    <input type="file" id="checkupFile@item.CheckupID" name="checkupFile@item.CheckupID" accept=".pdf" class="form-control">
+                </div>
             </div>
         </div>
-    </div>
+    }
+    
 
     <div class="d-flex justify-content-between">
         <button type="submit" class="btn btn-primary">Make Appointment</button>
         <button type="reset" class="btn btn-secondary">Reset</button>
     </div>
 </form>
+
+@* <script>
+    document.getElementById("clinic").addEventListener("change", function () {
+        const clinicId = this.value;
+        const doctorSelect = document.getElementById("doctor");
+
+        doctorSelect.innerHTML = '<option value="">Select Doctor</option>';
+
+        if (clinicId) {
+            fetch(`/PatientMakeAppointment/GetDoctorsByClinic?clinicId=${clinicId}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(doctor => {
+                        const option = document.createElement("option");
+                        option.value = doctor.ID;
+                        option.textContent = doctor.Name;
+                        doctorSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching doctors:', error));
+        }
+    });
+</script> *@
+
+<script>
+    document.getElementById("clinic").addEventListener("change", function () {
+        const clinicId = this.value;
+        const doctorSelect = document.getElementById("doctor");
+
+        doctorSelect.innerHTML = '<option value="">Select Doctor</option>';  // Boş seçenek ekliyoruz
+
+        if (clinicId) {
+            fetch(`/PatientMakeAppointment/GetDoctorsByClinic?clinicId=${clinicId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        const option = document.createElement("option");
+                        option.value = "";
+                        option.textContent = "No doctors available";
+                        doctorSelect.appendChild(option);
+                    } else {
+                        console.log("Doctor data:", data);
+
+                        data.forEach(doctor => {
+                            const option = document.createElement("option");
+                            option.value = doctor.id;
+                            option.textContent = doctor.name;
+                            doctorSelect.appendChild(option);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching doctors:', error);
+                    const option = document.createElement("option");
+                    option.value = "";
+                    option.textContent = "Error loading doctors";
+                    doctorSelect.appendChild(option);
+                });
+        }
+    });
+
+</script>

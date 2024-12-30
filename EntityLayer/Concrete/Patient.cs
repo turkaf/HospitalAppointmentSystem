@@ -23,6 +23,5 @@ namespace EntityLayer.Concrete
         public string Password { get; set; }
         // Navigational Property
         public virtual List<Appointment> Appointments { get; set; }
-        public virtual List<PatientAnswers> PatientAnswers { get; set; }
     }
 }

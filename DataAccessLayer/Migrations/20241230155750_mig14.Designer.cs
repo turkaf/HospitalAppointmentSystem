@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20241230155750_mig14")]
+    partial class mig14
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,6 +167,31 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Doctors");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.Medicine", b =>
+                {
+                    b.Property<int>("MedicineID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MedicineID"));
+
+                    b.Property<string>("Dosage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Instruction")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MedicineID");
+
+                    b.ToTable("Medicines");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Patient", b =>
                 {
                     b.Property<int>("PatientID")
@@ -258,6 +286,29 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Prescriptions");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.PrescriptionMedicine", b =>
+                {
+                    b.Property<int>("PrescriptionMedicineID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PrescriptionMedicineID"));
+
+                    b.Property<int>("MedicineID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PrescriptionID")
+                        .HasColumnType("int");
+
+                    b.HasKey("PrescriptionMedicineID");
+
+                    b.HasIndex("MedicineID");
+
+                    b.HasIndex("PrescriptionID");
+
+                    b.ToTable("PrescriptionMedicines");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Appointment", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Doctor", "Doctor")
@@ -318,6 +369,25 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Appointment");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.PrescriptionMedicine", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Medicine", "Medicine")
+                        .WithMany("PrescriptionMedicines")
+                        .HasForeignKey("MedicineID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EntityLayer.Concrete.Prescription", "Prescription")
+                        .WithMany("PrescriptionMedicines")
+                        .HasForeignKey("PrescriptionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Medicine");
+
+                    b.Navigation("Prescription");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Appointment", b =>
                 {
                     b.Navigation("PatientAnswers");
@@ -340,9 +410,19 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Appointments");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.Medicine", b =>
+                {
+                    b.Navigation("PrescriptionMedicines");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Patient", b =>
                 {
                     b.Navigation("Appointments");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Prescription", b =>
+                {
+                    b.Navigation("PrescriptionMedicines");
                 });
 #pragma warning restore 612, 618
         }

@@ -20,5 +20,6 @@ namespace EntityLayer.Concrete
         public virtual Doctor Doctor { get; set; }
         public virtual Patient Patient { get; set; }
         public virtual List<Prescription> Prescriptions { get; set; }
+        public virtual List<PatientAnswers> PatientAnswers { get; set; }
     }
 }
