@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
 {
     public interface IPrescriptionService : IGenericService<Prescription>
     {
+        List<Prescription> TGetListPrescriptionWithAppointment();
     }
 }

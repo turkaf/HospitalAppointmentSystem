@@ -216,6 +216,58 @@
 </script>
 
 <script>
+    document.getElementById("appointmentDate").addEventListener("change", function () {
+        const doctorId = document.getElementById("doctor").value;
+        const appointmentDate = this.value;
+
+        if (!doctorId || !appointmentDate) return;
+
+        fetch(`/PatientMakeAppointment/GetBookedTimes?doctorId=${doctorId}&appointmentDate=${appointmentDate}`)
+            .then(response => response.json())
+            .then(data => {
+                // Saatleri disable et
+                disableBookedTimes(data);
+            })
+            .catch(error => {
+                console.error('Error fetching booked times:', error);
+            });
+    });
+
+    document.getElementById("doctor").addEventListener("change", function () {
+        const doctorId = this.value;
+        const appointmentDate = document.getElementById("appointmentDate").value;
+
+        if (!doctorId || !appointmentDate) return;
+
+        fetch(`/PatientMakeAppointment/GetBookedTimes?doctorId=${doctorId}&appointmentDate=${appointmentDate}`)
+            .then(response => response.json())
+            .then(data => {
+                // Saatleri disable et
+                disableBookedTimes(data);
+            })
+            .catch(error => {
+                console.error('Error fetching booked times:', error);
+            });
+    });
+
+    function disableBookedTimes(bookedTimes) {
+        const times = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30"];
+
+        times.forEach(time => {
+            const timeRadio = document.querySelector(`#time${times.indexOf(time) + 1}`);
+
+            if (bookedTimes.includes(time)) {
+                timeRadio.disabled = true;
+                timeRadio.closest('.form-check').classList.add('disabled');
+            } else {
+                timeRadio.disabled = false;
+                timeRadio.closest('.form-check').classList.remove('disabled');
+            }
+        });
+    }
+</script>
+
+<script>
     const today = new Date().toISOString().split('T')[0];
 
     document.getElementById("appointmentDate").setAttribute("min", today);

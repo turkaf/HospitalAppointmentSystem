@@ -12,11 +12,13 @@ namespace HospitalAppointmentSystem.Controllers
     {
         IAppointmentService _appointmentService;
         IPatientAnswersService _patientAnswersService;
+        IPrescriptionService _prescriptionService;
 
-        public DoctorAppointmentsController(IAppointmentService appointmentService, IPatientAnswersService patientAnswersService)
+        public DoctorAppointmentsController(IAppointmentService appointmentService, IPatientAnswersService patientAnswersService, IPrescriptionService prescriptionService)
         {
             _appointmentService = appointmentService;
             _patientAnswersService = patientAnswersService;
+            _prescriptionService = prescriptionService;
         }
 
         public IActionResult Index()
@@ -89,9 +91,64 @@ namespace HospitalAppointmentSystem.Controllers
 
 
         [HttpGet]
-        public IActionResult Prescribe() 
+        public IActionResult Prescribe(int id) 
         {
-            return View();
+            var appointment = _appointmentService.TGetListAppointmentWithPatient()
+                .FirstOrDefault(a => a.AppointmentID == id);
+
+            if (appointment == null)
+            {
+                return NotFound();
+            }
+
+            var appointmentDetailViewModel = new AppointmentDetailViewModel
+            {
+                AppointmentID = appointment.AppointmentID,
+                PatientFirstName = appointment.Patient.FirstName,
+                PatientLastName = appointment.Patient.LastName,
+                PatientAge = DateTime.Now.Year - appointment.Patient.DateOfBirth.Year,
+                Gender = appointment.Patient.Gender,
+                AppointmentDate = appointment.AppointmentDate.ToString("dd.MM.yyyy")
+            };
+
+            return View(appointmentDetailViewModel);
         }
+
+        [HttpPost]
+        public IActionResult SavePrescription(int appointmentId, string diagnosis, string? medicine1, string? dosage1, string? instruction1,
+            string? medicine2, string? dosage2, string? instruction2, string? medicine3, string? dosage3, string? instruction3)
+        {
+
+            var diagnosisvar = diagnosis;
+
+            var appointment = _appointmentService.TGetByID(appointmentId);
+            if (appointment == null)
+            {
+                return NotFound();
+            }
+
+            var prescription = _prescriptionService.TGetList()
+                .FirstOrDefault(p => p.AppointmentID == appointmentId);
+
+            prescription = new Prescription
+            {
+                AppointmentID = appointmentId,
+                Diagnosis = diagnosis,
+                Medicine1 = medicine1,
+                Dosage1 = dosage1,
+                Instruction1 = instruction1,
+                Medicine2 = medicine2,
+                Dosage2 = dosage2,
+                Instruction2 = instruction2,
+                Medicine3 = medicine3,
+                Dosage3 = dosage3,
+                Instruction3 = instruction3
+            };
+            _prescriptionService.TAdd(prescription);
+
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

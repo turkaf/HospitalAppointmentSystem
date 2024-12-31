@@ -140,6 +140,19 @@ namespace HospitalAppointmentSystem.Controllers
             return RedirectToAction("Index", "PatientAppointments");
         }
 
+        [HttpGet]
+        public JsonResult GetBookedTimes(int doctorId, string appointmentDate)
+        {
+            var date = DateTime.Parse(appointmentDate);
+
+            var bookedAppointments = _appointmentService.TGetList()
+                .Where(a => a.DoctorID == doctorId && a.AppointmentDate.Date == date.Date)
+                .Select(a => a.AppointmentTime.ToString(@"hh\:mm"))
+                .ToList();
+
+            return Json(bookedAppointments);
+        }
+
         private int CalculateAge(DateTime birthDate)
         {
             var today = DateTime.Today;

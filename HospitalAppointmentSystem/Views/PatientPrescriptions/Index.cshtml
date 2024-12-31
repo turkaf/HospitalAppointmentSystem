@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<PrescriptionListViewModel>
+
+@{
     ViewData["Title"] = "Prescriptions";
     Layout = "~/Views/Shared/_PatientLayout.cshtml";
 }
@@ -19,33 +21,18 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="table-hover">
-            <td>1000</td>
-            <td>Dermatology</td>
-            <td>Ethan Carter</td>
-            <td>06.12.2024</td>
-            <td>
-                <button type="button" class="btn btn-outline-primary me-1">View Details</button>
-            </td>
-        </tr>
-        <tr class="table-hover">
-            <td>1001</td>
-            <td>Cardiology</td>
-            <td>Emily Watson</td>
-            <td>07.12.2024</td>
-            <td>
-                <button type="button" class="btn btn-outline-primary me-1">View Details</button>
-            </td>
-        </tr>
-        <tr class="table-hover">
-            <td>1002</td>
-            <td>Pediatrics</td>
-            <td>John Smith</td>
-            <td>08.12.2024</td>
-            <td>
-                <button type="button" class="btn btn-outline-primary me-1">View Details</button>
-            </td>
-        </tr>
+        @foreach(var item in Model)
+        {
+            <tr class="table-hover">
+                <td>@item.ID</td>
+                <td>@item.Clinic</td>
+                <td>Dr. @item.Doctor</td>
+                <td>@item.Date</td>
+                <td>
+                    <a href="@Url.Action("ViewDetails", "PatientPrescriptions", new { prescriptionId = item.ID })" class="btn btn-outline-primary me-1">View Details</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 

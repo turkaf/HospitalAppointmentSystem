@@ -54,6 +54,9 @@ builder.Services.AddScoped<ICheckupService, CheckupManager>();
 builder.Services.AddScoped<IPatientAnswersDal, EfPatientAnswersDal>();
 builder.Services.AddScoped<IPatientAnswersService, PatientAnswersManager>();
 
+builder.Services.AddScoped<IPrescriptionDal, EfPrescriptionDal>();
+builder.Services.AddScoped<IPrescriptionService, PrescriptionManager>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
