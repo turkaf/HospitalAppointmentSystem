@@ -36,12 +36,16 @@
 
 @if(Model.PatientAnswersList != null)
 {
-    @foreach (var answer in Model.PatientAnswersList)
-    {
-        <div class="card mt-4">
+    <div class="card mt-4">
             <div class="card-header">
                 <h4>Last Checkup Details</h4>
             </div>
+    @foreach (var answer in Model.PatientAnswersList)
+    {
+        @* <div class="card mt-4">
+            <div class="card-header">
+                <h4>Last Checkup Details</h4>
+            </div> *@
             <div class="card-body">
                 <p><strong>Checkup Type:</strong> @answer.Checkup.Question</p>
                 <p><strong>Minimum Age Criteria:</strong> @answer.Checkup.MinAge</p>
@@ -53,15 +57,16 @@
                 }
                 @if (answer.Answer)
                 {
-                    <p><strong>Status:</strong> <span class="badge text-bg-success">AVAILABLE</span></p>
+                    <p><strong>Status:</strong> <span class="badge text-bg-success">YES</span></p>
                 }
                 else
                 {
-                    <p><strong>Status:</strong> <span class="badge text-bg-danger">NOT AVAILABLE</span></p>
+                    <p><strong>Status:</strong> <span class="badge text-bg-danger">NO</span></p>
                 }
             </div>
-        </div>
+        @* </div> *@
     }
+    </div>
 }
 
 <div class="card mt-4">
